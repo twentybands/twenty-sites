@@ -8,187 +8,165 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
 
-body{
-  margin:0;
-  font-family:Orbitron;
-  color:white;
-  overflow-x:hidden;
-  background:black;
+body {
+  margin: 0;
+  font-family: Orbitron;
+  color: white;
+  background: #000;
+  overflow-x: hidden;
 }
 
-/* 🎥 VIDEO BACKGROUND */
-#bg-video{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-3;
-  opacity:0.35;
-}
-
-/* 🌌 OVERLAY */
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
+/* 🔵 CLEAN ANIMATED BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
   background:
-    radial-gradient(circle at 20% 20%, #00f0ff55, transparent 40%),
-    radial-gradient(circle at 80% 80%, #ff003355, transparent 40%),
-    rgba(0,0,0,0.65);
-  z-index:-2;
+    radial-gradient(circle at 20% 20%, rgba(0,240,255,0.25), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255,0,60,0.20), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0,80,255,0.15), transparent 60%);
+  animation: move 8s infinite alternate ease-in-out;
+  z-index: -2;
 }
 
-/* MAIN */
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:30px;
-  text-align:center;
+@keyframes move {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
 }
 
-/* PROFILE */
-.profile img{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  border:2px solid #00f0ff;
-  box-shadow:0 0 25px #00f0ff;
+/* 🌫 overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
 }
 
-/* GLITCH NAME */
-.username{
-  font-size:38px;
-  font-weight:800;
-  position:relative;
-  display:inline-block;
-  margin-top:10px;
+/* container */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px;
+  text-align: center;
+}
+
+/* profile */
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #00f0ff;
+  box-shadow: 0 0 20px #00f0ff;
+}
+
+/* username CLEAN GLITCH */
+.username {
+  font-size: 38px;
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  text-shadow: 0 0 10px #00f0ff;
 }
 
 .username::before,
-.username::after{
-  content:attr(data-text);
-  position:absolute;
-  left:0;
-  top:0;
+.username::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.7;
 }
 
-.username::before{
-  color:#ff0033;
-  animation:glitch1 0.25s infinite;
+.username::before {
+  color: #ff0033;
+  transform: translate(2px,0);
+  animation: g1 2.5s infinite;
 }
 
-.username::after{
-  color:#00f0ff;
-  animation:glitch2 0.25s infinite;
+.username::after {
+  color: #00f0ff;
+  transform: translate(-2px,0);
+  animation: g2 2.5s infinite;
 }
 
-@keyframes glitch1{
-  0%{transform:translate(0)}
-  50%{transform:translate(-2px,2px)}
-  100%{transform:translate(2px,-2px)}
+@keyframes g1 {
+  0%,100% { transform: translate(2px,0); }
+  50% { transform: translate(-1px,1px); }
 }
 
-@keyframes glitch2{
-  0%{transform:translate(0)}
-  50%{transform:translate(2px,-2px)}
-  100%{transform:translate(-2px,2px)}
+@keyframes g2 {
+  0%,100% { transform: translate(-2px,0); }
+  50% { transform: translate(1px,-1px); }
 }
 
-/* DISCORD */
-.discord{
-  color:#aaa;
-  font-size:13px;
+.discord {
+  color: #aaa;
+  font-size: 13px;
 }
 
-/* SECTION */
-.section{
-  margin-top:35px;
-  text-align:left;
+/* section */
+.section {
+  margin-top: 40px;
+  text-align: left;
 }
 
-.section h2{
-  color:#00f0ff;
-  border-left:3px solid #00f0ff;
-  padding-left:10px;
+.section h2 {
+  color: #00f0ff;
+  border-left: 3px solid #00f0ff;
+  padding-left: 10px;
 }
 
-/* ITEM CARDS */
-.item{
-  background:rgba(255,255,255,0.05);
-  padding:12px;
-  margin:8px 0;
-  border-radius:10px;
-  border:1px solid transparent;
-  transition:0.2s;
-  position:relative;
+/* items */
+.item {
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: 0.2s;
 }
 
-.item:hover{
-  transform:scale(1.03);
-  border:1px solid #00f0ff;
-  box-shadow:0 0 15px #00f0ff55;
+.item:hover {
+  transform: scale(1.03);
+  border: 1px solid #00f0ff;
+  box-shadow: 0 0 15px #00f0ff55;
 }
 
-.tag{ color:#00f0ff; }
-
-.status{
-  float:right;
-  font-size:12px;
-  color:#aaa;
+.tag {
+  color: #00f0ff;
 }
 
-/* COPY */
-.copy{
-  position:absolute;
-  right:10px;
-  top:10px;
-  font-size:11px;
-  color:#00f0ff;
-  opacity:0;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.item:hover .copy{
-  opacity:1;
+.status {
+  float: right;
+  font-size: 12px;
+  color: #aaa;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎥 VIDEO BACKGROUND -->
-<video autoplay muted loop playsinline id="bg-video">
-  <source src="./assets/background.mp4" type="video/mp4">
-</video>
-
 <div class="container">
 
-  <!-- PROFILE -->
   <div class="profile">
-    <img src="https://i.imgur.com/SEU_PFP.jpg">
+    <img src="https://i.imgur.com/LJMnDVC.jpeg">
     <div class="username" data-text="@twenty">@twenty</div>
     <div class="discord">Discord: 20931412</div>
   </div>
 
-  <!-- PT -->
   <div class="section">
     <h2>PT USERS</h2>
-
     <div class="item"><span class="tag">@aplicabilidade</span> - 4€ <span class="status">AVAILABLE</span></div>
     <div class="item"><span class="tag">@ofuscacao</span> - 7€ <span class="status">AVAILABLE</span></div>
     <div class="item"><span class="tag">@criptoanalise</span> - 10€ <span class="status">AVAILABLE</span></div>
-    <div class="item"><span class="tag">@desfavorecimento</span> - 3€ <span class="status">AVAILABLE</span></div>
   </div>
 
-  <!-- ENG -->
   <div class="section">
     <h2>ENG USERS</h2>
-
     <div class="item"><span class="tag">@imponderably</span> - 15€ <span class="status">AVAILABLE</span></div>
     <div class="item"><span class="tag">@syntonin</span> - 18€ <span class="status">AVAILABLE</span></div>
-    <div class="item"><span class="tag">@mockground</span> - 5€ <span class="status">AVAILABLE</span></div>
   </div>
 
 </div>
